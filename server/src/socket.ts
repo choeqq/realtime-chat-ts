@@ -1,9 +1,14 @@
 import { Server, Socket } from "socket.io";
 import logger from "./utils/logger";
 
-enum EVENTS {
-  CONNECTION = "connection",
+enum CLIENT {
+  CREATE_ROOM = "CREATE_ROOM",
 }
+
+const EVENTS = {
+  CONNECTION: "connection",
+  CLIENT,
+};
 
 function socket({ io }: { io: Server }) {
   io.on(EVENTS.CONNECTION, (socket: Socket) => {
