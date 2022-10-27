@@ -1,5 +1,17 @@
+import { useSockets } from "../context/socket.context";
+
 function MessagesContainer() {
-  return <div>Messages</div>;
+  const { socket, messages, roomId, username } = useSockets();
+
+  if (!roomId) return <div />;
+
+  return (
+    <div>
+      {messages.map((m, i) => (
+        <p key={i}>{JSON.stringify(m)}</p>
+      ))}
+    </div>
+  );
 }
 
 export default MessagesContainer;
