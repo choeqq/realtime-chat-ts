@@ -7,6 +7,7 @@ enum EVENTS {
 
 function socket({ io }: { io: Server }) {
   io.on(EVENTS.CONNECTION, (socket: Socket) => {
+    console.log(socket.id);
     logger.info(`User connected ${socket.id}`);
   });
 }
