@@ -16,6 +16,12 @@ function RoomsContainer() {
     newRoomRef.current.value = "";
   }
 
+  function handleJoinRoom(key) {
+    if (key === roomId) return;
+
+    socket.emit(EVENTS.CLIENT.JOIN_ROOM, key);
+  }
+
   return (
     <nav>
       <div>
@@ -24,7 +30,11 @@ function RoomsContainer() {
       </div>
 
       {Object.keys(rooms).map((key) => (
-        <div key={key}>{rooms[key].name}</div>
+        <div key={key}>
+          <button disabled={key === roomId} onClick={handleJoinRoom}>
+            {rooms[key].name}
+          </button>
+        </div>
       ))}
     </nav>
   );

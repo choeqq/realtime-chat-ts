@@ -5,6 +5,7 @@ import { nanoid } from "nanoid";
 enum CLIENT {
   CREATE_ROOM = "CREATE_ROOM",
   SEND_ROOM_MESSAGE = "SEND_ROOM_MESSAGE",
+  JOIN_ROOM = "JOIN_ROOM",
 }
 
 enum SERVER {
@@ -54,6 +55,12 @@ function socket({ io }: { io: Server }) {
         });
       }
     );
+
+    socket.on(EVENTS.CLIENT.JOIN_ROOM, (roomId) => {
+      socket.join(roomId);
+
+      socket.emit(EVENTS.SERVER.JOINED_ROOM, roomId);
+    });
   });
 }
 
