@@ -31,7 +31,11 @@ function RoomsContainer() {
 
       {Object.keys(rooms).map((key) => (
         <div key={key}>
-          <button disabled={key === roomId} onClick={handleJoinRoom}>
+          <button
+            disabled={key === roomId}
+            onClick={() => handleJoinRoom(key)}
+            title={`Join ${rooms[key].name}`}
+          >
             {rooms[key].name}
           </button>
         </div>
